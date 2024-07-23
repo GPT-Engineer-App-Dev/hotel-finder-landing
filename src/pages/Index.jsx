@@ -1,8 +1,9 @@
 import React from 'react';
-import { Search, MapPin, Calendar, Users } from 'lucide-react';
+import { Search, MapPin, Calendar, Users, Star, Coffee, Wifi } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 const HotelFinderLanding = () => {
   return (
@@ -27,7 +28,7 @@ const HotelFinderLanding = () => {
             <p className="text-xl text-gray-600">Discover amazing hotels for your next adventure</p>
           </div>
 
-          <Card className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <Card className="bg-white shadow-lg rounded-lg overflow-hidden mb-12">
             <CardContent className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="flex items-center border rounded-md px-3 py-2">
@@ -49,6 +50,33 @@ const HotelFinderLanding = () => {
               </div>
             </CardContent>
           </Card>
+
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6">Popular Hotels</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <HotelCard
+                name="Luxury Resort & Spa"
+                location="Maldives"
+                price={299}
+                rating={4.8}
+                image="/placeholder.svg"
+              />
+              <HotelCard
+                name="City Center Hotel"
+                location="New York"
+                price={199}
+                rating={4.5}
+                image="/placeholder.svg"
+              />
+              <HotelCard
+                name="Mountain View Lodge"
+                location="Switzerland"
+                price={249}
+                rating={4.7}
+                image="/placeholder.svg"
+              />
+            </div>
+          </div>
 
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
             <FeatureCard
@@ -93,6 +121,34 @@ const FeatureCard = ({ icon, title, description }) => {
         <h3 className="text-xl font-semibold mb-2">{title}</h3>
         <p className="text-gray-600">{description}</p>
       </CardContent>
+    </Card>
+  );
+};
+
+const HotelCard = ({ name, location, price, rating, image }) => {
+  return (
+    <Card className="overflow-hidden">
+      <img src={image} alt={name} className="w-full h-48 object-cover" />
+      <CardHeader>
+        <CardTitle>{name}</CardTitle>
+        <CardDescription className="flex items-center">
+          <MapPin className="w-4 h-4 mr-1" /> {location}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex items-center mb-2">
+          <Star className="w-5 h-5 text-yellow-400 mr-1" />
+          <span className="font-semibold">{rating}</span>
+        </div>
+        <div className="flex space-x-2">
+          <Badge variant="secondary"><Coffee className="w-4 h-4 mr-1" /> Breakfast</Badge>
+          <Badge variant="secondary"><Wifi className="w-4 h-4 mr-1" /> Free WiFi</Badge>
+        </div>
+      </CardContent>
+      <CardFooter className="flex justify-between items-center">
+        <span className="text-2xl font-bold">${price}</span>
+        <Button>Book Now</Button>
+      </CardFooter>
     </Card>
   );
 };
