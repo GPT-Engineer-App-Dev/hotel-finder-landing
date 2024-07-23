@@ -45,7 +45,7 @@ const HotelFinderLanding = () => {
                 </div>
                 <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                   <Search className="mr-2" />
-                  Search Hotels
+                  Search
                 </Button>
               </div>
             </CardContent>
